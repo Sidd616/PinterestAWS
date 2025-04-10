@@ -1,0 +1,11 @@
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: auto;
+  gap: 24px;
+}
+
+.grid-item {
+  break-inside: avoid;
+  margin-bottom: 24px;
+}

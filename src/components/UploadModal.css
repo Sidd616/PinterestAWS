@@ -1,0 +1,184 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.upload-modal {
+  background-color: var(--white);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 24px;
+}
+
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--light-text);
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button:hover {
+  background-color: var(--secondary-color);
+}
+
+.modal-title {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image-upload-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-placeholder {
+  width: 100%;
+  height: 350px;
+  border: 2px dashed var(--secondary-color);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  text-align: center;
+}
+
+.upload-icon {
+  font-size: 48px;
+  color: var(--light-text);
+  margin-bottom: 16px;
+}
+
+.file-hint {
+  font-size: 12px;
+  color: var(--light-text);
+  margin-top: 8px;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-input-label {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 8px 16px;
+  border-radius: 24px;
+  cursor: pointer;
+  margin-top: 16px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.file-input-label:hover {
+  opacity: 0.9;
+}
+
+.image-preview-container {
+  width: 100%;
+  height: 350px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid var(--secondary-color);
+}
+
+/* Add this to your UploadModal.css file */
+.form-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.submit-button {
+  flex: 1;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 24px;
+  padding: 12px 16px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.submit-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  border-radius: 24px;
+  padding: 12px 16px;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.cancel-button:hover {
+  background-color: #e0e0e0;
+}
