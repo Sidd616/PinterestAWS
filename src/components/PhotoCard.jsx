@@ -3,18 +3,22 @@ import { FaHeart, FaRegHeart, FaComment, FaEllipsisH } from "react-icons/fa";
 import "./PhotoCard.css";
 
 function PhotoCard({ photo, user }) {
-  const [likes, setLikes] = useState(photo.likes);
-  const [likesCount, setLikesCount] = useState(0);
+  const userId = user?.profile?.sub;
+  const [liked, setLiked] = useState(Boolean(userId && photo.likes?.includes(userId)));
+  const [likesCount, setLikesCount] = useState(photo.likes?.length || 0);
   const [showComments, setShowComments] = useState(false);
   const [comment, setComment] = useState("");
+  const [commentsCount, setCommentsCount] = useState(photo.comments?.length || 0);
 
   const handleLike = () => {
     if (!user) return;
 
     if (liked) {
       setLikesCount(likesCount - 1);
+      photo.likes = photo.likes.filter((id) => id !== userId);
     } else {
       setLikesCount(likesCount + 1);
+      photo.likes = [...(photo.likes || []), userId];
     }
     setLiked(!liked);
 
@@ -32,12 +36,13 @@ function PhotoCard({ photo, user }) {
     // For now, let's just update the local state
     photo.comments.push({
       id: Date.now().toString(),
-      userId: user?.id || "anonymous",
-      username: user?.username || "anonymous",
+      userId: userId || "anonymous",
+      username: user?.profile?.["cognito:username"] || "anonymous",
       text: comment,
       createdAt: new Date().toISOString(),
     });
 
+    setCommentsCount(commentsCount + 1);
     setComment("");
   };
 
@@ -66,10 +71,10 @@ function PhotoCard({ photo, user }) {
 
           <div className="photo-actions">
             <button
-              className={`action-button like-button ${likes ? "liked" : ""}`}
+              className={`action-button like-button ${liked ? "liked" : ""}`}
               onClick={handleLike}
             >
-              {likes ? <FaHeart /> : <FaRegHeart />}
+              {liked ? <FaHeart /> : <FaRegHeart />}
               <span>{likesCount}</span>
             </button>
 
@@ -78,7 +83,7 @@ function PhotoCard({ photo, user }) {
               onClick={() => setShowComments(!showComments)}
             >
               <FaComment />
-              <span>{0}</span>
+              <span>{commentsCount}</span>
             </button>
           </div>
         </div>

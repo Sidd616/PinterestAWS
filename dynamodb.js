@@ -15,4 +15,4 @@ const dynamodbClient = new DynamoDBClient({
 // Create a document client for simpler interactions
 const dynamodb = DynamoDBDocumentClient.from(dynamodbClient);
 
-export { dynamodb };
+export { dynamodb, dynamodbClient };

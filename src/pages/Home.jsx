@@ -5,25 +5,16 @@ import "./Home.css";
 
 function Home({ user, isAuthenticated }) {
   const [showUploadModal, setShowUploadModal] = useState(false);
-  const [photos, setPhotos] = useState([""]);
-  
+  const [photos, setPhotos] = useState([]);
+
   const fetchPosts = async () => {
     try {
       const response = await fetch("http://localhost:5000/posts", {
         method: "GET",
       });
-      
+
       const data = await response.json();
-     // console.log(data);
-      
-      if (data.success) {
-        setPhotos(data);
-       // console.log("Photos:", photos);
-      
-      } else {
-        setPhotos(data);
-        //console.log("Photos:", data);
-      }
+      setPhotos(data);
     } catch (error) {
       console.error("Fetch Error:", error);
       alert("Error Fetching file. Please try again.");
@@ -36,8 +27,7 @@ function Home({ user, isAuthenticated }) {
     
   }, []);  
 
-  const handleUpload = (newPhoto) => {
-//    setPhotos([newPhoto, ...photos]);
+  const handleUpload = () => {
     fetchPosts();
     setShowUploadModal(false);
   };
@@ -55,8 +45,8 @@ function Home({ user, isAuthenticated }) {
         </div>
       )}
 
-      { photos.length > 0 ? (<PhotoGrid photos={photos} user={user} />) : ("")};
-      
+      {photos.length > 0 && <PhotoGrid photos={photos} user={user} />}
+
 
       {showUploadModal && (
         <UploadModal

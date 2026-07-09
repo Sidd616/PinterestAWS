@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PhotoGrid from "../components/PhotoGrid";
 
 function Profile({ user, isAuthenticated }) {
-  const [photos, setPhotos] = useState([""]);
+  const [photos, setPhotos] = useState([]);
     
     const fetchPosts = async () => {
         const response = await fetch("http://localhost:5000/posts", {
@@ -41,8 +41,8 @@ function Profile({ user, isAuthenticated }) {
 
 
 
-      { photos.length > 0 ? (<PhotoGrid photos={photos} user={user} />) : ("No photos found")};
-      
+      {photos.length > 0 ? <PhotoGrid photos={photos} user={user} /> : "No photos found"}
+
     </div>
   );
 }
